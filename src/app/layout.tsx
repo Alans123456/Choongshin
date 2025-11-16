@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
@@ -7,19 +7,15 @@ import Topbar from "@/Components/Topbar";
 
 // make sure folder name is lowercase
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Choongshin",
-  description: "a website for a company called choongshin",
+  description: "A personalized gift shop that crafts unique and memorable gifts for every occasion.",
 };
 
 export default function RootLayout({
@@ -29,9 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}
-      >
+      <body className={`${poppins.variable} bg-background text-foreground antialiased`}>
         <div className="flex flex-col min-h-screen">
           <header className="fixed top-0 left-0 right-0 z-50 w-full">
             <Topbar />
