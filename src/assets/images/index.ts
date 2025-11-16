@@ -1,0 +1,10 @@
+import hero from "./hero.png";
+import craft1 from "./craft1.png";
+import craft2 from "./craft2.png";
+import craft3 from "./craft3.png";
+import craft4 from "./craft4.png";
+import yeti from "./yeti.png";
+import npl from "./npl.png";
+import nwc from "./nwc.png";
+import cg from "./cg.png";
+export { hero, craft1, craft2,craft3, craft4, yeti,npl,nwc,cg };
