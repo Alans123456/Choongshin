@@ -17,8 +17,8 @@
   --color-primary: #6b4e3d;
   --color-secondary: #8b6f47;
   --color-tertiary: #f5ede5;
-  --font-title: "Geist Sans", sans-serif;
-  --font-body: "Geist Mono", monospace;
+  --font-title: "Poppins";
+  --font-body: "Poppins";
 }
 
 @theme inline {
