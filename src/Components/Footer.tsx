@@ -1,165 +1,113 @@
-// src/components/Footer.tsx
-import React from 'react';
-import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+"use clint";
+import Link from "next/link";
+import {Facebook, Mail, Phone, Clock} from "lucide-react";
 
-const Footer: React.FC = () => {
-  const importantLinks = [
-    { name: 'Catalogue', href: '/catalogue' },
-    { name: 'Stores', href: '/stores' },
-    { name: 'Gift Cards', href: '/gift-cards' },
-    { name: 'Corporate Gifts', href: '/corporate-gifts' },
-    { name: 'Press', href: '/press' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Terms & Conditions', href: '/terms' }
-  ];
-
-  const mainMenu = [
-    { name: 'About Us', href: '/about' },
-    { name: 'Shop', href: '/shop' },
-    { name: 'Collaborations', href: '/collaborations' },
-    { name: 'Dori Chronicles', href: '/dori-chronicles' },
-    { name: 'Cafe Dori', href: '/cafe-dori' }
-  ];
+export default function Footer() {
+  const currentYear = new Date(Date.now()).getFullYear();
 
   return (
-    <footer className="bg-black/70 backdrop-blur-md text-white pt-16 pb-8 px-8 sm:px-12 md:px-20 lg:px-32">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
-          {/* About Section */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center">
-                <span className="text-white font-bold text-xl">C</span>
+    <footer className="bg-primary text-tertiary">
+      <div className="max-w-screen mx-auto px-6 py-10 lg:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          {/* Company Info */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl lg:text-3xl font-bold font-title">
+                <span className="text-secondary">Choongshin</span>
+                <span className="text-tertiary"> Crafts & Media</span>
+              </h2>
+            </div>
+            <p className="text-gray-300 leading-relaxed font-body">
+              Crafting Ideas into Reality for over 10 years. Your trusted partner for customized gifts, printing, branding, and engraving solutions.
+            </p>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors font-body font-medium"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold font-title text-tertiary">Contact Us</h3>
+            <div className="space-y-4 font-body">
+              <div className="flex items-start gap-3">
+                <div className="mt-1">
+                  <svg className="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-gray-300">Bharatpur-10, Saikshik Marg</p>
+                  <p className="text-gray-300">Chitwan, Nepal</p>
+                </div>
               </div>
-              <h3 className="text-white text-lg font-light tracking-wider">
-                CHOONGSHIN
-              </h3>
-            </div>
-            <p className="text-sm leading-relaxed mb-6 text-white/70">
-              Choongshin is a tribute to quintessential Neplease sensibilities, blended perfectly with contemporary interpretations in design, material and craftsmanship. The Nepalease love story being a global one, aspires everyone to the nostalgia, mysticism and romance of the historic landmarks, vibrant culture, landscape and an endless collection of eclectic modern icons.
-            </p>
-            
-            {/* Social Media Icons */}
-            <div className="flex gap-4">s
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
+
+              <a href="tel:9855062050" className="flex items-center gap-3 text-gray-300 hover:text-secondary transition-colors">
+                <Phone className="w-5 h-5 text-secondary" />
+                <span>985-5062050</span>
               </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
+
+              <a href="mailto:mail.ccmnepal@gmail.com" className="flex items-center gap-3 text-gray-300 hover:text-secondary transition-colors break-all">
+                <Mail className="w-5 h-5 text-secondary" />
+                <span>mail.ccmnepal@gmail.com</span>
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a 
-                href="https://youtube.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube size={20} />
-              </a>
+
+              <div className="flex items-center gap-3 text-gray-300">
+                <Clock className="w-5 h-5 text-secondary" />
+                <span>6 AM - 9 PM, Saturday Closed</span>
+              </div>
             </div>
           </div>
-
-          {/* Important Links */}
-          <div>
-            <h3 className="text-white text-lg font-light tracking-wider mb-4">
-              IMPORTANT LINKS
-            </h3>
-            <ul className="space-y-2.5">
-              {importantLinks.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    href={link.href}
-                    className="text-sm text-white/70 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold font-title text-tertiary">Catagories</h3>
+            <nav className="flex flex-col space-y-3 font-body">
+              <Link href="/category/gifts" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Gifts
+              </Link>
+              <Link href="/category/printing" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Printing
+              </Link>
+              <Link href="/category/branding" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Crafting
+              </Link>
+            </nav>
           </div>
 
-          {/* Main Menu */}
-          <div>
-            <h3 className="text-white text-lg font-light tracking-wider mb-4">
-              MAIN MENU
-            </h3>
-            <ul className="space-y-2.5">
-              {mainMenu.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    href={link.href}
-                    className="text-sm text-white/70 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-white text-lg font-light tracking-wider mb-4">
-              NEWSLETTER
-            </h3>
-            <p className="text-sm text-white/70 mb-4 leading-relaxed">
-              Subscribe to stay updated about new products, promotional offers and more.
-            </p>
-            <form className="space-y-3">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder:text-white/50 text-sm focus:outline-none focus:border-white/50 transition-colors"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full px-6 py-2.5 bg-white/10 backdrop-blur-md border border-white/30 text-white text-sm tracking-wider hover:bg-white/20 transition-colors"
-              >
-                SUBSCRIBE
-              </button>
-            </form>
+          {/* Quick Links */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold font-title text-tertiary">Quick Links</h3>
+            <nav className="flex flex-col space-y-3 font-body">
+              <Link href="/" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Home
+              </Link>
+              <Link href="/products" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Products
+              </Link>
+              <Link href="/about" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                About
+              </Link>
+              <Link href="/contact" className="text-gray-300 hover:text-secondary transition-colors hover:translate-x-1 transform duration-200">
+                Contact
+              </Link>
+            </nav>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Section */}
-        <div className="pt-8 border-t border-white/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-white/70">
-              © {new Date().getFullYear()} Choongshin. All rights reserved.
-            </p>
-            <p className="text-sm text-white/70">
-              Chitwan, Nepal
-            </p>
-          </div>
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <p className="text-center text-gray-400 text-sm font-body">© {currentYear} Choongshin Crafts and Media. All rights reserved.</p>
+          <a href="https://www.intelzysoftwares.com/" target="_blank">
+            {" "}
+            <p className="text-end text-gray-400 text-xs font-body">Powered by Intelzy Software Pvt Ltd.</p>
+          </a>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
