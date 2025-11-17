@@ -117,21 +117,18 @@ const Navbar: React.FC = () => {
   return (
     <nav className="w-screen bg-white shadow-sm sticky inset-0 top-0  z-50">
       {/* Top Bar */}
-      <div className="bg-linear-to-r from-purple-900 to-purple-800" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
+      <div className="bg-white border-b border-gray-100">
         <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-end h-10 text-xs">
-            <div className="flex items-end gap-6 text-white/90">
-              <Link href="/about" className="hover:text-white transition-colors">
+          <div className="flex items-center justify-end h-10 text-sm lg:text-xl">
+            <div className="flex items-end gap-6 text-gray-600">
+              <Link href="/about" className="hover:text-purple-900 transition-colors">
                 About
               </Link>
-              <Link href="/gallery" className="hover:text-white transition-colors">
+              <Link href="/gallery" className="hover:text-purple-900 transition-colors">
                 Gallery
               </Link>
-              <Link href="/contact" className="hover:text-white transition-colors">
+              <Link href="/contact" className="hover:text-purple-900 transition-colors">
                 Contact
-              </Link>
-              <Link href="/blog" className="hover:text-white transition-colors">
-                Blog
               </Link>
             </div>
           </div>
@@ -139,21 +136,21 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="shrink-0 hover:opacity-90 transition-opacity">
-            <Image src="/CCM-Logo.png" alt="Logo" className="mb-3" width={100} height={80} />
+            <Image src="/CCM-Logo.png" alt="Logo" className="mb-5" width={100} height={80} />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
+          <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
             {navLinks.map((link) => (
               <div key={link.name} className="relative group" onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.name)} onMouseLeave={() => setActiveDropdown(null)}>
                 <Link
                   href={link.href}
-                  className="flex items-center gap-1 text-gray-700 hover:text-purple-900 font-medium text-sm transition-colors py-2"
-                  style={{color: activeDropdown === link.name ? "#633B6F" : ""}}
+                  className="flex items-center gap-1 text-white/90 hover:text-white font-medium text-sm transition-colors py-2"
+                  style={{color: activeDropdown === link.name ? "#ffffff" : ""}}
                 >
                   {link.name}
                   {link.hasDropdown && <ChevronDown size={16} className={`transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`} />}
@@ -161,7 +158,7 @@ const Navbar: React.FC = () => {
 
                 {/* Mega Menu */}
                 {link.hasDropdown && activeDropdown === link.name && megaMenuData[link.name] && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-screen max-w-6xl">
+                  <div className="absolute  align-center items-center top-full pt-4 w-200 inset-x-0">
                     <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-8">
                       <div className="grid grid-cols-7 gap-8">
                         {megaMenuData[link.name].map((category) => (
@@ -199,7 +196,7 @@ const Navbar: React.FC = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setShowSearchSuggestions(true)}
                 onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
-                className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-900/20 focus:border-purple-900 focus:bg-white transition-all"
+                className="w-full pl-11 pr-4 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/20 transition-all text-white placeholder-white/60"
               />
             </div>
 
@@ -227,7 +224,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 text-gray-700" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button className="lg:hidden p-2 text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
