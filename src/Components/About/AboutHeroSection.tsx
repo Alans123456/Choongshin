@@ -930,7 +930,7 @@ const AboutUsPage = () => {
                     alt={member.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
                 </div>
                 <div className="p-6">
                   <h3
@@ -1023,21 +1023,20 @@ const AboutUsPage = () => {
       </section>
 
       {/* CONTACT INFORMATION */}
-      <section style={{ backgroundColor: COLORS.primary }} className="py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">Get in touch</h2>
+      <section style={{ backgroundColor: COLORS.lightBg }} className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Get in touch</h2>
           <p
-            className="text-base mb-12 max-w-2xl mx-auto"
-            style={{ color: COLORS.lightPurple }}
+            className="text-base mb-8 max-w-2xl mx-auto"
+            style={{ color: COLORS.primary }}
           >
             Have a question or custom request? Reach out to us
           </p>
 
-          {/* Horizontal layout for desktop, vertical for mobile */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 max-w-3xl mx-auto">
             {/* Email */}
             <div
-              className="rounded-2xl p-6 shadow-xl border flex-1 min-w-[200px]"
+              className="rounded-2xl p-6 shadow-xl inset-shadow-sm border flex-1 min-w-[200px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-white cursor-pointer"
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.15)",
                 borderColor: "rgba(255, 255, 255, 0.25)",
@@ -1050,7 +1049,7 @@ const AboutUsPage = () => {
               <a
                 href="mailto:hello@choongshin.example"
                 className="hover:text-white transition-colors text-sm"
-                style={{ color: COLORS.lightPurple }}
+                style={{ color: COLORS.primary }}
               >
                 hello@choongshin.example
               </a>
@@ -1058,7 +1057,7 @@ const AboutUsPage = () => {
 
             {/* Phone */}
             <div
-              className="rounded-2xl p-6 shadow-xl border flex-1 min-w-[200px]"
+              className="rounded-2xl p-6 shadow-xl inset-shadow-sm border flex-1 min-w-[200px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-white cursor-pointer"
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.15)",
                 borderColor: "rgba(255, 255, 255, 0.25)",
@@ -1071,7 +1070,7 @@ const AboutUsPage = () => {
               <a
                 href="tel:+15551234567"
                 className="hover:text-white transition-colors text-sm"
-                style={{ color: COLORS.lightPurple }}
+                style={{ color: COLORS.primary }}
               >
                 +1 (555) 123-4567
               </a>
@@ -1079,7 +1078,7 @@ const AboutUsPage = () => {
 
             {/* Address */}
             <div
-              className="rounded-2xl p-6 shadow-xl border flex-1 min-w-[200px]"
+              className="rounded-2xl p-6 shadow-xl inset-shadow-sm border flex-1 min-w-[200px] transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-white cursor-pointer"
               style={{
                 backgroundColor: "rgba(255, 255, 255, 0.15)",
                 borderColor: "rgba(255, 255, 255, 0.25)",
@@ -1089,7 +1088,7 @@ const AboutUsPage = () => {
                 <MapPin className="w-6 h-6" style={{ color: COLORS.primary }} />
               </div>
               <h3 className="font-bold text-lg mb-2">Visit Our Studio</h3>
-              <p className="text-sm" style={{ color: COLORS.lightPurple }}>
+              <p className="text-sm" style={{ color: COLORS.primary }}>
                 123 Artisan Lane
                 <br />
                 Craft District
