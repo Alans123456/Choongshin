@@ -114,7 +114,7 @@ export default function Footer() {
           <p className="text-center text-gray-400 text-sm font-body">© {currentYear} Choongshin Crafts and Media. All rights reserved.</p>
           <a href="https://www.intelzysoftwares.com/" target="_blank">
             {" "}
-            <p className="text-end text-gray-400 text-xs font-body">Powered by Intelzy Software Pvt Ltd.</p>
+            <p className="text-end text-gray-400 text-xs font-body">Powered by Intelzy Softwares Pvt Ltd.</p>
           </a>
         </div>
       </div>

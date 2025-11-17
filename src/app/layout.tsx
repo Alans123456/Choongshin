@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type {Metadata} from "next";
+import {Poppins} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
@@ -18,11 +18,7 @@ export const metadata: Metadata = {
   description: "A personalized gift shop that crafts unique and memorable gifts for every occasion.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} bg-background text-foreground antialiased`}>
@@ -31,9 +27,7 @@ export default function RootLayout({
             <Topbar />
             <Navbar />
           </header>
-          <main className="mt-32 w-full grow">
-            {children}
-          </main>
+          <main className="mt-31 w-full grow">{children}</main>
           <Footer />
         </div>
       </body>
