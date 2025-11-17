@@ -71,39 +71,10 @@ export default function ProductPage() {
   }, [searchQuery, selectedCategory, priceRange, sortBy]);
 
   return (
-    <div className="min-h-screen bg-[#633B6F]">
+    <div className="min-h-screen pt-10 bg-[#633B6F]">
 
-      {/* FIXED HEADER (NO OVERLAP) */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
-
-          {/* TITLE + MOBILE FILTER BUTTON */}
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-[#633B6F]">Shop</h1>
-            <Button
-              type="button"
-              className="lg:hidden"
-              onClick={() => setShowFilters(!showFilters)}
-            >
-              <SlidersHorizontal className="w-6 h-6 text-[#633B6F]" />
-            </Button>
-          </div>
-
-          {/* SEARCH BAR (NOW NO OVERLAP) */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#F8A61C]" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:outline-none border-[#633B6F]"
-            />
-          </div>
-
-        </div>
-      </header>
-
+   
+ 
       {/* CONTENT */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex gap-8">
@@ -174,13 +145,23 @@ export default function ProductPage() {
           <main className="flex-1">
             <div className="flex items-center justify-between mb-6">
               <p className="text-white font-medium">{filteredProducts.length} products</p>
+                  <div className="relative">
 
+            <input
+              type="text"
+              
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 text-white pr-4 py-3 border-2 rounded-lg focus:outline-none border-secondary"
+            />
+          </div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border-2 rounded-lg border-[#F8A61C] focus:outline-none"
+                className="px-4 py-2 border-2  rounded-lg border-[#F8A61C] focus:outline-none"
               >
-                <option value="featured">Featured</option>
+                <option value="featured" >Featured</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
                 <option value="rating">Highest Rated</option>
