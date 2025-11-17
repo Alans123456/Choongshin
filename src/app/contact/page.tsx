@@ -158,7 +158,7 @@ export default function ContactPage() {
                     type="text"
                     {...register("name", { required: "Name is required" })}
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all duration-300 focus:shadow-lg"
-                    placeholder="John Doe"
+                    placeholder="Sitaram"
                   />
                   {errors.name && (
                     <p className="mt-1 text-sm text-red-500 animate-shake">
@@ -181,7 +181,7 @@ export default function ContactPage() {
                       },
                     })}
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all duration-300 focus:shadow-lg"
-                    placeholder="john@example.com"
+                    placeholder="sitaram@example.com"
                   />
                   {errors.email && (
                     <p className="mt-1 text-sm text-red-500 animate-shake">
