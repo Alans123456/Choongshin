@@ -114,12 +114,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="w-screen sticky font-poppins  inset-0 top-0 z-50" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="w-screen sticky font-poppins mb-0  inset-0 top-0 z-50" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
+      <div className="mx-auto mb-0 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="shrink-0 hover:opacity-90 transition-opacity">
-            <Image src="/CCM-Logo.png" alt="Logo" width={80} height={50} />
+            <Image src="/CCM-Logo.png" alt="Logo" className="mb-1" width={90} height={40} />
           </Link>
 
           {/* Desktop Navigation */}
