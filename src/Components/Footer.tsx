@@ -1,6 +1,6 @@
 "use clint";
 import Link from "next/link";
-import {Facebook, Mail, Phone, Clock} from "lucide-react";
+import {Facebook, Mail, Phone, Clock, InstagramIcon} from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date(Date.now()).getFullYear();
@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl lg:text-3xl font-bold font-title">
+              <h2 className="text-2xl lg:text-3xl font-bold ">
                 <span className="text-secondary">Choongshin</span>
                 <span className="text-tertiary"> Crafts & Media</span>
               </h2>
@@ -28,6 +28,16 @@ export default function Footer() {
             >
               <Facebook className="w-5 h-5" />
             </a>
+            &nbsp;
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors font-body font-medium"
+            >
+              <InstagramIcon className="w-5 h-5" />
+            </a>
+            &nbsp;
           </div>
 
           {/* Contact Info */}
