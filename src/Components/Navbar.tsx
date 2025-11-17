@@ -36,7 +36,6 @@ const Navbar: React.FC = () => {
       href: "/corporate-gifting",
       hasDropdown: false,
     },
-    {name: "Events", href: "/events", hasDropdown: false},
   ];
 
   const searchSuggestions = ["Birthday Gifts", "Anniversary Frames", "Personalized Keyrings", "Custom Lamps", "Wedding Souvenirs", "Mother's Day Gifts", "Rakhi Special", "Photo Frames"];
@@ -115,32 +114,12 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="w-screen bg-white shadow-sm sticky inset-0 top-0  z-50">
-      {/* Top Bar */}
-      <div className="bg-white border-b border-gray-100">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-end h-10 text-sm lg:text-xl">
-            <div className="flex items-end gap-6 text-gray-600">
-              <Link href="/about" className="hover:text-purple-900 transition-colors">
-                About
-              </Link>
-              <Link href="/gallery" className="hover:text-purple-900 transition-colors">
-                Gallery
-              </Link>
-              <Link href="/contact" className="hover:text-purple-900 transition-colors">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation */}
-      <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
+    <nav className="w-screen sticky inset-0 top-0 z-50" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="shrink-0 hover:opacity-90 transition-opacity">
-            <Image src="/CCM-Logo.png" alt="Logo" className="mb-5" width={100} height={80} />
+            <Image src="/CCM-Logo.png" alt="Logo" width={80} height={50} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -158,7 +137,7 @@ const Navbar: React.FC = () => {
 
                 {/* Mega Menu */}
                 {link.hasDropdown && activeDropdown === link.name && megaMenuData[link.name] && (
-                  <div className="absolute  align-center items-center top-full pt-4 w-200 inset-x-0">
+                  <div className="absolute align-center items-center top-full pt-4 w-200 inset-x-0">
                     <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-8">
                       <div className="grid grid-cols-7 gap-8">
                         {megaMenuData[link.name].map((category) => (
@@ -185,42 +164,58 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Search Bar */}
-          <div className="hidden lg:block shrink-0 w-80 relative">
-            <div className="relative">
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setShowSearchSuggestions(true)}
-                onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
-                className="w-full pl-11 pr-4 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/20 transition-all text-white placeholder-white/60"
-              />
+          {/* Right Side: Search & Links */}
+          <div className="hidden lg:flex items-center gap-6">
+            {/* Search Bar */}
+            <div className="relative w-64">
+              <div className="relative">
+                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setShowSearchSuggestions(true)}
+                  onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
+                  className="w-full pl-11 pr-4 py-2.5 bg-white/10 border border-white/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/20 transition-all text-white placeholder-white/60"
+                />
+              </div>
+
+              {/* Search Suggestions */}
+              {showSearchSuggestions && searchQuery && filteredSuggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
+                  <div className="p-2">
+                    <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500">Popular Searches</p>
+                    {filteredSuggestions.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setSearchQuery(suggestion);
+                          setShowSearchSuggestions(false);
+                        }}
+                        className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-3 group"
+                      >
+                        <Search size={14} className="text-gray-400 group-hover:text-orange-500 transition-colors" />
+                        <span className="text-sm text-gray-700 group-hover:text-gray-900">{suggestion}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Search Suggestions */}
-            {showSearchSuggestions && searchQuery && filteredSuggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50">
-                <div className="p-2">
-                  <p className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500">Popular Searches</p>
-                  {filteredSuggestions.map((suggestion, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setSearchQuery(suggestion);
-                        setShowSearchSuggestions(false);
-                      }}
-                      className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-3 group"
-                    >
-                      <Search size={14} className="text-gray-400 group-hover:text-orange-500 transition-colors" />
-                      <span className="text-sm text-gray-700 group-hover:text-gray-900">{suggestion}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+            {/* Top Links */}
+            <div className="flex items-center gap-4 text-sm">
+              <Link href="/about" className="text-white/80 hover:text-white transition-colors">
+                About
+              </Link>
+              <Link href="/gallery" className="text-white/80 hover:text-white transition-colors">
+                Gallery
+              </Link>
+              <Link href="/contact" className="text-white/80 hover:text-white transition-colors">
+                Contact
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -232,7 +227,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100">
+        <div className="lg:hidden border-t border-white/20">
           <div className="px-4 py-4 space-y-3">
             {/* Mobile Search */}
             <div className="relative mb-4">
@@ -240,15 +235,28 @@ const Navbar: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-900/20 focus:border-purple-900"
+                className="w-full pl-11 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-900/20 focus:border-purple-900"
               />
             </div>
 
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>
+              <Link key={link.name} href={link.href} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>
                 {link.name}
               </Link>
             ))}
+
+            {/* Mobile Top Links */}
+            <div className="border-t border-white/20 pt-3 mt-3 space-y-3">
+              <Link href="/about" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                About
+              </Link>
+              <Link href="/gallery" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Gallery
+              </Link>
+              <Link href="/contact" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
       )}

@@ -53,18 +53,19 @@ const Topbar = () => {
 
   return (
     <div
-      className={`text-white border-b transition-all duration-300 ease-in-out h-[45px] ${isVisible ? "opacity-100" : "opacity-0 -translate-y-full"}`}
+      className={`border-b transition-all duration-300 ease-in-out h-[45px] ${isVisible ? "opacity-100" : "opacity-0 -translate-y-full"}`}
       style={{
-        backgroundColor: "#633B6F",
-        borderColor: "#633B6F80",
+        backgroundColor: "#ffffff", // Reversed: Orange background
+        borderColor: "#F8A61C", // Semi-transparent orange border
         marginBottom: isVisible ? 0 : "-45px",
+        color: "#000000", // Text color: dark purple
       }}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center py-2 gap-2">
           {/* Contact Info - Left */}
           <div className="flex items-center gap-4 md:gap-6 text-sm">
-            <a href="tel:+97797000000000" className="flex items-center gap-2 text-white">
+            <a href="tel:+97797000000000" className="flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -75,7 +76,7 @@ const Topbar = () => {
               </svg>
               <span className="font-medium">985-5062050</span>
             </a>
-            <div className="hidden lg:flex items-center gap-2 text-white">
+            <div className="hidden lg:flex items-center gap-2">
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -95,7 +96,7 @@ const Topbar = () => {
                   }`}
                 >
                   <span className="text-xl">{item.icon}</span>
-                  <span className="text-sm md:text-base font-semibold text-white text-center">{item.text}</span>
+                  <span className="text-sm md:text-base font-semibold text-center">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -109,16 +110,16 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
               style={{
-                backgroundColor: "white",
-                color: "#633B6F",
+                backgroundColor: "#633B6F", // Reversed: purple background
+                color: "white", // white icon
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#F8A61C";
-                e.currentTarget.style.color = "white";
+                e.currentTarget.style.backgroundColor = "white";
+                e.currentTarget.style.color = "#F8A61C";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "white";
-                e.currentTarget.style.color = "#633B6F";
+                e.currentTarget.style.backgroundColor = "#633B6F";
+                e.currentTarget.style.color = "white";
               }}
               aria-label="Facebook"
             >
@@ -132,16 +133,16 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
               style={{
-                backgroundColor: "white",
-                color: "#633B6F",
+                backgroundColor: "#633B6F",
+                color: "white",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#F8A61C";
-                e.currentTarget.style.color = "white";
+                e.currentTarget.style.backgroundColor = "white";
+                e.currentTarget.style.color = "#F8A61C";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "white";
-                e.currentTarget.style.color = "#633B6F";
+                e.currentTarget.style.backgroundColor = "#633B6F";
+                e.currentTarget.style.color = "white";
               }}
               aria-label="Instagram"
             >
@@ -155,16 +156,16 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
               style={{
-                backgroundColor: "white",
-                color: "#633B6F",
+                backgroundColor: "#633B6F",
+                color: "white",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#F8A61C";
-                e.currentTarget.style.color = "white";
+                e.currentTarget.style.backgroundColor = "white";
+                e.currentTarget.style.color = "#F8A61C";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "white";
-                e.currentTarget.style.color = "#633B6F";
+                e.currentTarget.style.backgroundColor = "#633B6F";
+                e.currentTarget.style.color = "white";
               }}
               aria-label="Twitter"
             >
