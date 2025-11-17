@@ -59,6 +59,8 @@ const Topbar = () => {
         borderColor: "#F8A61C", // Semi-transparent orange border
         marginBottom: isVisible ? 0 : "-45px",
         color: "#000000", // Text color: dark purple
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: "bold",
       }}
     >
       <div className="max-w-7xl mx-auto px-6">

@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="w-screen sticky inset-0 top-0 z-50" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
+    <nav className="w-screen sticky font-poppins  inset-0 top-0 z-50" style={{background: "linear-gradient(135deg, #633B6F 0%, #7a4a86 100%)"}}>
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
                             <ul className="space-y-2.5">
                               {category.items.map((item) => (
                                 <li key={item.name}>
-                                  <Link href={item.href} className="text-sm text-gray-600 hover:text-orange-500 transition-colors block" style={{transition: "color 0.15s ease"}}>
+                                  <Link href={item.href} className="text-sm font-Poppins text-gray-600 hover:text-orange-500 transition-colors block" style={{transition: "color 0.15s ease"}}>
                                     {item.name}
                                   </Link>
                                 </li>
