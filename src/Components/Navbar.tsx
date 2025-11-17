@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="shrink-0 hover:opacity-90 transition-opacity">
-            <Image src="/CCM-Logo.png" alt="Logo" className="mb-1" width={90} height={40} />
+            <Image src="/CCM-Logo.png" alt="Logo" className=" translate-y-[-3px]" width={90} height={40} />
           </Link>
 
           {/* Desktop Navigation */}
