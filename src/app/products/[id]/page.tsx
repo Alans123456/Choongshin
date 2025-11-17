@@ -131,6 +131,18 @@ Please let me know the availability and delivery details.`;
     );
   };
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.description,
+        url: window.location.href,
+      });
+    } else {
+      alert("Sharing is not supported in this browser.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-br from-amber-50 via-white to-purple-50">
       {/* Header */}
@@ -138,18 +150,9 @@ Please let me know the availability and delivery details.`;
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Heritage Crafts</h1>
           <div className="flex gap-4">
-            <button
-              onClick={() => setIsWishlisted(!isWishlisted)}
-              className="p-2 hover:bg-purple-50 rounded-full transition-colors"
-            >
-              <Heart
-                className={`w-6 h-6 ${
-                  isWishlisted ? "fill-red-500 text-red-500" : "text-gray-600"
-                }`}
-              />
-            </button>
+            
             <button className="p-2 hover:bg-purple-50 rounded-full transition-colors">
-              <Share2 className="w-6 h-6 text-gray-600" />
+              <Share2 onClick={handleShare} className="w-6 h-6 text-gray-600" />
             </button>
           </div>
         </div>
@@ -467,7 +470,7 @@ Please let me know the availability and delivery details.`;
               >
                 <span className="relative z-10 flex items-center justify-center">
                   <Phone className="mr-2" size={20} />
-                  Call Us
+                  Call Now
                 </span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               </button>

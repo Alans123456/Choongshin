@@ -215,6 +215,7 @@ const Navbar: React.FC = () => {
               <Link href="/contact" className="text-white/80 hover:text-white transition-colors">
                 Contact
               </Link>
+              
             </div>
           </div>
 
@@ -255,6 +256,9 @@ const Navbar: React.FC = () => {
               </Link>
               <Link href="/contact" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Contact
+              </Link>
+              <Link href="/products/1" className="text-white/80 hover:text-white transition-colors">
+                Call Us
               </Link>
             </div>
           </div>
