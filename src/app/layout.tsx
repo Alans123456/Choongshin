@@ -25,7 +25,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <link rel="shortcut icon" href="/CCM-Logo.png" type="image/png" />
         
       </head>
-      <body className={`${poppins.variable} bg-background text-foreground antialiased`}>
+      <body className={`${poppins.variable} bg-background text-foreground antialiased`}> 
         <div className="flex flex-col min-h-screen">
           <header className="fixed top-0 left-0 right-0 z-50 w-full">
             <Topbar />
