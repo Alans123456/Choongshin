@@ -7,7 +7,8 @@ import ShopForHer from "@/Components/Home/ShopHer";
 import HeroSection1 from "@/Components/Home/HeroSection1";
 import AuthenticitySection from "@/Components/Home/Authencitysection";
 import CollaborationsSection from "@/Components/Home/CollaborationSection";
-
+import ShopForHim from "@/Components/Home/ShopHim";
+import DealsOfferSection from "@/Components/Home/DealsOfferSection";
 
 export default function HomePage() {
   return (
@@ -15,12 +16,14 @@ export default function HomePage() {
       {/* Other Sections */}
 
       <HeroSection1/>
+      <DealsOfferSection/>
       <HeroSection />
       <ShopByOccasion />
       <CollaborationsSection/>
       <AuthenticitySection/>
       <ShopForHer/>
       <WhyChooseUs/>
+      <ShopForHim/>
 
     </div>
   );
