@@ -2,7 +2,6 @@
 import React, { useState, KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
 
-
 type Colors = {
   frontBg: string;
   backGradient: string;
@@ -21,91 +20,91 @@ type Category = {
 const CATEGORIES: Category[] = [
   {
     id: 1,
-    title: "Mother",
-    subtitle: "For the one who means everything",
+    title: "Father",
+    subtitle: "For the man who taught you everything",
     frontImage:
-      "https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400&h=300&fit=crop",
     backText:
-      "Celebrate the woman who gave you everything with personalized gifts that show your love.",
+      "Show appreciation with thoughtful gifts that honour his wisdom and care.",
     colors: {
-      frontBg: "bg-pink-50",
-      backGradient: "from-pink-50 to-rose-100",
-      accent: "bg-pink-500",
+      frontBg: "bg-slate-50",
+      backGradient: "from-slate-50 to-slate-100",
+      accent: "bg-slate-600",
     },
   },
   {
     id: 2,
-    title: "Wife",
-    subtitle: "Your forever love",
+    title: "Husband",
+    subtitle: "Your life partner",
     frontImage:
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop",
     backText:
-      "Make your life partner feel cherished with thoughtful, romantic personalized gifts.",
+      "Romantic, practical, or playful — find gifts that say ‘I love you’ in your language.",
     colors: {
-      frontBg: "bg-red-50",
-      backGradient: "from-red-50 to-pink-100",
-      accent: "bg-red-500",
+      frontBg: "bg-emerald-50",
+      backGradient: "from-emerald-50 to-emerald-100",
+      accent: "bg-emerald-600",
     },
   },
   {
     id: 3,
-    title: "Sister",
-    subtitle: "Your first best friend",
+    title: "Brother",
+    subtitle: "Your lifelong teammate",
     frontImage:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=300&fit=crop",
     backText:
-      "Honor your first friend with unique gifts that celebrate your special bond.",
+      "Celebrate the bond with unique picks your brother will actually use and love.",
     colors: {
-      frontBg: "bg-purple-50",
-      backGradient: "from-purple-50 to-violet-100",
-      accent: "bg-purple-500",
+      frontBg: "bg-cyan-50",
+      backGradient: "from-cyan-50 to-sky-100",
+      accent: "bg-cyan-600",
     },
   },
   {
     id: 4,
-    title: "Girlfriend",
-    subtitle: "Make her heart flutter",
+    title: "Boyfriend",
+    subtitle: "Make his day",
     frontImage:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop",
     backText:
-      "Express your affection with creative, personalized gifts she'll treasure forever.",
+      "Surprise him with playful, romantic or personalised gifts that make memories.",
     colors: {
       frontBg: "bg-rose-50",
-      backGradient: "from-rose-50 to-pink-100",
-      accent: "bg-rose-500",
+      backGradient: "from-rose-50 to-red-50",
+      accent: "bg-rose-600",
     },
   },
   {
     id: 5,
-    title: "Best Friend",
-    subtitle: "Your partner in crime",
+    title: "Best Mate",
+    subtitle: "Partner in mischief",
     frontImage:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=400&h=300&fit=crop",
     backText:
-      "Show appreciation for your bestie with fun, memorable personalized gifts.",
+      "Gift your best mate something practical, funny, or legendary — depending on the occasion.",
     colors: {
       frontBg: "bg-amber-50",
       backGradient: "from-amber-50 to-yellow-100",
-      accent: "bg-amber-500",
+      accent: "bg-amber-600",
     },
   },
   {
     id: 6,
-    title: "Daughter",
-    subtitle: "Your little princess",
+    title: "Son",
+    subtitle: "The little hero",
     frontImage:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop",
     backText:
-      "Delight your little princess with gifts that make her feel special and loved.",
+      "Delight your son with playful and inspiring gifts for every age and milestone.",
     colors: {
       frontBg: "bg-sky-50",
       backGradient: "from-sky-50 to-blue-100",
-      accent: "bg-sky-500",
+      accent: "bg-sky-600",
     },
   },
 ];
 
-export default function ShopForHer() {
+export default function ShopForHim() {
   const [flippedId, setFlippedId] = useState<number | null>(null);
 
   const router = useRouter();
@@ -122,11 +121,11 @@ export default function ShopForHer() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Shop For Her
+            Shop For Him
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our collection of personalized gifts designed to make her
-            feel special.
+            Explore our curated collection of personalised gifts made for him —
+            practical, stylish, and memorable.
           </p>
         </div>
 
@@ -185,10 +184,11 @@ export default function ShopForHer() {
                     <div
                       style={faceStyle}
                       className={`${cat.colors.frontBg} rounded-2xl shadow-lg overflow-hidden border border-gray-100`}
-                      // Make front focusable + toggleable for keyboard users
                       role="button"
                       tabIndex={0}
-                      onClick={() => setFlippedId((p) => (p === cat.id ? null : cat.id))}
+                      onClick={() =>
+                        setFlippedId((p) => (p === cat.id ? null : cat.id))
+                      }
                       onKeyDown={(e) => handleKeyToggle(e, cat.id)}
                       aria-pressed={isFlipped}
                       aria-label={`${cat.title} card`}
@@ -214,7 +214,7 @@ export default function ShopForHer() {
                         <div
                           className={`w-16 h-16 ${cat.colors.accent} rounded-full flex items-center justify-center mb-4 shadow-md`}
                         >
-                          <span className="text-white text-2xl">♥</span>
+                          <span className="text-white text-2xl">🎁</span>
                         </div>
                         <p className="text-gray-700 text-sm leading-relaxed mb-6">
                           {cat.backText}
@@ -222,7 +222,7 @@ export default function ShopForHer() {
                         <button
                           type="button"
                           className={`px-6 py-2 ${cat.colors.accent} cursor-pointer text-white rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300`}
-                           onClick={() => {
+                          onClick={() => {
                             /* replace with real routing or CTA */
                             router.push(`/products`);
                           }}
@@ -241,7 +241,3 @@ export default function ShopForHer() {
     </section>
   );
 }
-
-
-
-
