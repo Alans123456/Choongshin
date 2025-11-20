@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import Topbar from "@/Components/Topbar";
+import PosterOffer from "@/Components/PosterOffers";
 
 // make sure folder name is lowercase
 
@@ -31,6 +32,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Topbar />
             <Navbar />
           </header>
+          <PosterOffer />
           <main className="mt-31 w-full grow">{children}</main>
           <Footer />
         </div>

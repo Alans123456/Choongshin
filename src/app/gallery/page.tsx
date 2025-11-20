@@ -279,7 +279,7 @@ export default function GalleryPage() {
                   key={idx}
                   onClick={() => typeof page === 'number' ? handlePageChange(page) : null}
                   disabled={isEllipsis}
-                  className={`min-w-[44px] h-11 rounded-lg font-semibold transition-all hover:scale-105 disabled:cursor-default disabled:hover:scale-100 
+                  className={`min-w-11 h-11 rounded-lg font-semibold transition-all hover:scale-105 disabled:cursor-default disabled:hover:scale-100 
                     ${isActive ? 'bg-secondary text-primary' : isEllipsis ? 'bg-transparent text-primary border-none' : 'bg-tertiary text-primary border-2 border-primary/25'}`}
                 >
                   {page}
