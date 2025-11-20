@@ -546,7 +546,7 @@ const AboutUsPage = () => {
                 </div>
 
                 {/* Award Badge */}
-                <div
+                {/* <div
                   className="absolute -top-4 -right-4 rounded-2xl p-4 shadow-2xl"
                   style={{
                     backgroundColor: COLORS.secondary,
@@ -558,7 +558,7 @@ const AboutUsPage = () => {
                     <div className="text-xs font-semibold">2024</div>
                     <div className="text-xs">Best Craft</div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
