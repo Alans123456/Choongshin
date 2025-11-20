@@ -1,10 +1,10 @@
 import React from 'react'
-import ProductCard from '@/Components/Product/ProductCard'
+import ProductPage from '@/Components/Product/ProductPage'
 
 const page = () => {
   return (
     <div className=''>
-      <ProductCard />
+      <ProductPage />
     </div>
   )
 }
