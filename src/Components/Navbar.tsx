@@ -23,18 +23,38 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
 
   const navLinks = [
     {
-      name: "Personalized Gifts",
-      href: "/personalized-gifts",
+      name: "Token of Love",
+      href: "/token-of-love",
       hasDropdown: true,
     },
-    {name: "Home Decor", href: "/home-decor", hasDropdown: false},
     {
-      name: "Corporate Gifting",
-      href: "/corporate-gifting",
-      hasDropdown: false,
+      name: "2D/3D Board",
+      href: "/2d-3d-board",
+      hasDropdown: true,
+    },
+    {
+      name: "Sinage",
+      href: "/sinage",
+      hasDropdown: true,
+    },
+    {
+      name: "Promotional/Presents",
+      href: "/promotional-presents",
+      hasDropdown: true,
+    },
+    {
+      name: "Crafting/Carving",
+      href: "/crafting-carving",
+      hasDropdown: true,
+    },
+    {
+      name: "Printing & More",
+      href: "/printing-more",
+      hasDropdown: true,
     },
   ];
 
@@ -43,72 +63,70 @@ const Navbar: React.FC = () => {
   const filteredSuggestions = searchSuggestions.filter((suggestion) => suggestion.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const megaMenuData: MegaMenuData = {
-    "Personalized Gifts": [
+    "Token of Love": [
       {
-        title: "SHOP BY FESTIVAL",
+        title: "PRODUCTS",
         items: [
-          {name: "Mother's Day", href: "/festival/mothers-day"},
-          {name: "Rakhi", href: "/festival/rakhi"},
-          {name: "Father's Day", href: "/festival/fathers-day"},
-          {name: "Dashain", href: "/festival/dashain"},
-          {name: "Tihar", href: "/festival/tihar"},
+          {name: "Wooden/MDF", href: "/token-of-love/wooden-mdf"},
+          {name: "Acrylic", href: "/token-of-love/acrylic"},
+          {name: "Customized", href: "/token-of-love/customized"},
+          {name: "UV Print/Laser Engrave Plaque", href: "/token-of-love/uv-laser-plaque"},
         ],
       },
+    ],
+    "2D/3D Board": [
       {
-        title: "SHOP BY OCCASION",
+        title: "PRODUCTS",
         items: [
-          {name: "Anniversary", href: "/occasion/anniversary"},
-          {name: "Baby Shower", href: "/occasion/baby-shower"},
-          {name: "Birthday", href: "/occasion/birthday"},
-          {name: "Valentines Day", href: "/occasion/valentines"},
-          {name: "Wedding", href: "/occasion/wedding"},
-          {name: "Christmas", href: "/occasion/christmas"},
+          {name: "CNC Cutout ACP 2D Board", href: "/2d-3d-board/cnc-acp"},
+          {name: "Acrylic 3D Letter", href: "/2d-3d-board/acrylic-3d"},
+          {name: "SS (Golden/Silver) Mirror Letter", href: "/2d-3d-board/ss-mirror"},
+          {name: "PVC Profile Letter", href: "/2d-3d-board/pvc-profile"},
         ],
       },
+    ],
+    "Sinage": [
       {
-        title: "SHOP BY PRICE",
+        title: "PRODUCTS",
         items: [
-          {name: "Under Rs.1500", href: "/price/under-1500"},
-          {name: "Under Rs.1000", href: "/price/under-1000"},
-          {name: "Under Rs.500", href: "/price/under-500"},
+          {name: "Neon Light", href: "/sinage/neon-light"},
+          {name: "Light Photo Frame", href: "/sinage/light-frame"},
+          {name: "Product Display Frame", href: "/sinage/display-frame"},
+          {name: "Interior/Exterior Sinage", href: "/sinage/interior-exterior"},
         ],
       },
+    ],
+    "Promotional/Presents": [
       {
-        title: "SHOP BY PRODUCT",
+        title: "PRODUCTS",
         items: [
-          {name: "Frame", href: "/product/frame"},
-          {name: "Keyring", href: "/product/keyring"},
-          {name: "Lamps", href: "/product/lamps"},
-          {name: "Organiser", href: "/product/organiser"},
-          {name: "Souvenir", href: "/product/souvenir"},
-          {name: "Notebooks", href: "/product/notebooks"},
+          {name: "Corporate Promotionals", href: "/promotional/corporate"},
+          {name: "Festival Gifts", href: "/promotional/festival"},
+          {name: "Occasionals Gifts", href: "/promotional/occasional"},
+          {name: "UV Print/Laser Engrave Plaque", href: "/promotional/uv-laser"},
         ],
       },
+    ],
+    "Crafting/Carving": [
       {
-        title: "SHOP FOR HER",
+        title: "PRODUCTS",
         items: [
-          {name: "Friend", href: "/her/friend"},
-          {name: "Mother", href: "/her/mother"},
-          {name: "Sister", href: "/her/sister"},
-          {name: "Wife", href: "/her/wife"},
-          {name: "Girlfriend", href: "/her/girlfriend"},
-          {name: "Kid", href: "/her/kid"},
+          {name: "Wooden", href: "/crafting/wooden"},
+          {name: "Granite/Marble/Shilalekh/Tamrapatra", href: "/crafting/stone"},
+          {name: "Aankhi Jhyal/Jali Butta", href: "/crafting/traditional"},
+          {name: "Cylinder Carving", href: "/crafting/cylinder"},
         ],
       },
+    ],
+    "Printing & More": [
       {
-        title: "SHOP FOR HIM",
+        title: "PRODUCTS",
         items: [
-          {name: "Boyfriend", href: "/him/boyfriend"},
-          {name: "Brother", href: "/him/brother"},
-          {name: "Father", href: "/him/father"},
-          {name: "Friend", href: "/him/friend"},
-          {name: "Husband", href: "/him/husband"},
-          {name: "Kid", href: "/him/kid"},
+          {name: "UV Printing", href: "/printing/uv"},
+          {name: "Laser Printing/Marking", href: "/printing/laser"},
+          {name: "Febric/Fiber Print", href: "/printing/fabric"},
+          {name: "Digital/offset Print", href: "/printing/digital-offset"},
         ],
-      },
-      {
-        title: "SHOP BY THEME",
-        items: [{name: "Anime", href: "/theme/anime"}],
       },
     ],
   };
@@ -137,9 +155,9 @@ const Navbar: React.FC = () => {
 
                 {/* Mega Menu */}
                 {link.hasDropdown && activeDropdown === link.name && megaMenuData[link.name] && (
-                  <div className="absolute align-center items-center top-full pt-4 w-200 inset-x-0">
+                  <div className="absolute align-center items-center top-full pt-4 w-auto min-w-[280px] left-1/2 -translate-x-1/2">
                     <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-8">
-                      <div className="grid grid-cols-7 gap-8">
+                      <div className="grid grid-cols-1 gap-8">
                         {megaMenuData[link.name].map((category) => (
                           <div key={category.title}>
                             <h3 className="text-xs font-bold mb-4 tracking-wide uppercase" style={{color: "#633B6F"}}>
@@ -148,7 +166,7 @@ const Navbar: React.FC = () => {
                             <ul className="space-y-2.5">
                               {category.items.map((item) => (
                                 <li key={item.name}>
-                                  <Link href={item.href} className="text-sm font-Poppins text-gray-600 hover:text-orange-500 transition-colors block" style={{transition: "color 0.15s ease"}}>
+                                  <Link href={item.href} className="text-sm font-Poppins text-gray-600 hover:text-orange-500 transition-colors block whitespace-nowrap" style={{transition: "color 0.15s ease"}}>
                                     {item.name}
                                   </Link>
                                 </li>
@@ -226,7 +244,6 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-white/20">
           <div className="px-4 py-4 space-y-3">
@@ -241,9 +258,46 @@ const Navbar: React.FC = () => {
             </div>
 
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>
-                {link.name}
-              </Link>
+              <div key={link.name} className="px-1">
+                {link.hasDropdown ? (
+                  <>
+                    <button
+                      onClick={() => setMobileOpenDropdown((prev) => (prev === link.name ? null : link.name))}
+                      className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium"
+                    >
+                      <span>{link.name}</span>
+                      <ChevronDown size={16} className={`transition-transform ${mobileOpenDropdown === link.name ? "rotate-180" : ""}`} />
+                    </button>
+
+                    {mobileOpenDropdown === link.name && megaMenuData[link.name] && (
+                      <div className="pl-4 mt-2 space-y-2">
+                        {megaMenuData[link.name].map((category) => (
+                          <div key={category.title}>
+                            <div className="text-xs font-semibold uppercase text-white/80 px-4">{category.title}</div>
+                            {category.items.map((item) => (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                onClick={() => {
+                                  setMobileMenuOpen(false);
+                                  setMobileOpenDropdown(null);
+                                }}
+                                className="block px-6 py-2 text-white/80 hover:bg-white/5 rounded-md transition-colors text-sm"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link href={link.href} className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>
+                    {link.name}
+                  </Link>
+                )}
+              </div>
             ))}
 
             {/* Mobile Top Links */}
@@ -262,6 +316,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
+    
     </nav>
   );
 };

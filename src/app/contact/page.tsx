@@ -7,15 +7,16 @@ import { Toaster } from "@/Components/ui/sonner";
 import { toast } from "sonner";
 
 interface FormData {
-  name: string;
+  full_name: string;
   email: string;
   phone?: string;
-  service?: string;
+  subject?: string;
   message: string;
 }
 
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function ContactPage() {
-  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -25,16 +26,39 @@ export default function ContactPage() {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    setIsSubmitted(true);
-    toast.success("Message sent successfully!");
-    reset();
-    setTimeout(() => setIsSubmitted(false), 5000);
+    async function postData() {
+      try {
+        const response = await fetch(`${baseURL}api/v1/contact/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+        // console.log("Success:", result);
+        toast.success(result.message || "Message sent successfully!");
+        reset({full_name: '', email: '', phone: '', subject: '', message: ''});
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    postData();
+    
   };
 
+
+
+
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-tertiary via-[#f5f0f7] to-[#fff8ed] font-['Poppins'] overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-tertiary via-[#f5f0f7] to-[#fff8ed] font-['Poppins'] overflow-hidden">
       {/* Animated background elements */}
       <Toaster />
+     
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary opacity-5 rounded-full blur-3xl animate-pulse"></div>
         <div
@@ -49,7 +73,7 @@ export default function ContactPage() {
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-primary mb-4 font-['Poppins'] tracking-tight">
             Let's Create Together
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-primary to-secondary mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Ready to bring your vision to life? Reach out to Choongshin Media
             Graphics
@@ -66,7 +90,7 @@ export default function ContactPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start group cursor-pointer">
-                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-[#8a5a99] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 bg-linear-to-br from-primary to-[#8a5a99] rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <Mail className="text-white" size={24} />
                   </div>
                   <div className="ml-4">
@@ -78,7 +102,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start group cursor-pointer">
-                  <div className="w-14 h-14 bg-gradient-to-br from-secondary to-[#ffc04d] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 bg-linear-to-br from-secondary to-[#ffc04d] rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <Phone className="text-white" size={24} />
                   </div>
                   <div className="ml-4">
@@ -90,7 +114,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start group cursor-pointer">
-                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-[#8a5a99] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 bg-linear-to-br from-primary to-[#8a5a99] rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <MapPin className="text-white" size={24} />
                   </div>
                   <div className="ml-4">
@@ -106,7 +130,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start group cursor-pointer">
-                  <div className="w-14 h-14 bg-gradient-to-br from-secondary to-[#ffc04d] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 bg-linear-to-br from-secondary to-[#ffc04d] rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <Clock className="text-white" size={24} />
                   </div>
                   <div className="ml-4">
@@ -124,7 +148,7 @@ export default function ContactPage() {
               </div>
 
               {/* Decorative CTA */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-primary to-[#8a5a99] rounded-2xl text-white relative overflow-hidden">
+              <div className="mt-8 p-6 bg-linear-to-r from-primary to-[#8a5a99] rounded-2xl text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-white opacity-10"></div>
                 <div className="relative z-10">
                   <p className="text-lg font-semibold mb-2">
@@ -156,13 +180,13 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="text"
-                    {...register("name", { required: "Name is required" })}
+                    {...register("full_name", { required: "Name is required" })}
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all duration-300 focus:shadow-lg"
                     placeholder="Sitaram"
                   />
-                  {errors.name && (
+                  {errors.full_name && (
                     <p className="mt-1 text-sm text-red-500 animate-shake">
-                      {errors.name.message}
+                      {errors.full_name.message}
                     </p>
                   )}
                 </div>
@@ -207,15 +231,15 @@ export default function ContactPage() {
                     Service Interested In
                   </label>
                   <select
-                    {...register("service")}
+                    {...register("subject")}
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all duration-300 focus:shadow-lg"
                   >
                     <option value="">Select a service</option>
-                    <option value="branding">Branding & Identity</option>
-                    <option value="graphic-design">Graphic Design</option>
-                    <option value="web-design">Web Design</option>
-                    <option value="video-production">Video Production</option>
-                    <option value="media-craft">Media & Craft</option>
+                    <option value="token-of-love">Token of Love</option>
+                    <option value="2d-3d-board">2d/3d Board</option>
+                    <option value="sinage">Sinage</option>
+                    <option value="promotional-presents">Promotional/Presents</option>
+                    <option value="crafting-carving">Crafting/Carving</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -288,7 +312,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map Info Overlay */}
-            <div className="mt-4 p-4 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl flex items-center justify-between flex-wrap gap-4">
+            <div className="mt-4 p-4 bg-linear-to-r from-primary/5 to-secondary/5 rounded-2xl flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
                   <MapPin className="text-white" size={20} />

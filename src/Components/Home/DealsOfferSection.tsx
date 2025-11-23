@@ -186,7 +186,9 @@ export default function DealsOfferSection() {
             const hours = Math.floor(
               (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
             );
-            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const minutes = Math.floor(
+              (remaining % (1000 * 60 * 60)) / (1000 * 60)
+            );
             const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
             const isUpcoming = now < start;
@@ -232,7 +234,11 @@ export default function DealsOfferSection() {
                             ? "bg-gray-100 text-gray-500"
                             : "bg-secondary/10 text-secondary"
                         }`}
-                        style={{ backgroundColor: hasEnded ? undefined : "var(--color-secondary)/10" }}
+                        style={{
+                          backgroundColor: hasEnded
+                            ? undefined
+                            : "var(--color-secondary)/10",
+                        }}
                         aria-live="polite"
                       >
                         {hasEnded ? (
@@ -251,101 +257,65 @@ export default function DealsOfferSection() {
                     </div>
                   </div>
 
-                  {/* progress */}
-                  <div className="mt-4">
-                    <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
-                      <span>
-                        {isUpcoming
-                          ? "Not started"
-                          : hasEnded
-                          ? "Completed"
-                          : `${progress}% claimed`}
-                      </span>
-                      <span>{plural(claimed, "claimed")}</span>
-                    </div>
-                    <div
-                      className="w-full h-2 bg-gray-100 rounded-full overflow-hidden"
-                      role="progressbar"
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={progress}
-                      aria-label={`${offer.title} progress`}
-                    >
-                      <div
-                        className="h-full rounded-full transition-all duration-500"
-                        style={{
-                          width: `${progress}%`,
-                          background: "linear-gradient(90deg,var(--color-primary),var(--color-secondary))",
-                        }}
-                      />
-                    </div>
-                  </div>
-
                   {/* product carousel/grid */}
                   <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {offer.products.map((p) => (
                       <div
                         key={p.id}
-                        className="flex items-center gap-3 bg-gray-50 rounded-lg p-3"
+                        className="flex gap-3 bg-gray-50 rounded-lg p-3"
                       >
                         <img
                           src={p.image}
                           alt={p.name}
-                          className="w-20 h-20 rounded-md object-cover flex-shrink-0"
+                          className="w-20 h-20 rounded-md object-cover shrink-0"
                         />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <h4 className="text-sm font-semibold text-gray-900 truncate">
+                        <div className="flex-1 min-w-0 flex flex-col">
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-semibold text-gray-900 line-clamp-2">
                                 {p.name}
                               </h4>
-                              <p className="text-xs text-gray-500 mt-1">
+                              <p className="text-xs text-gray-500 mt-0.5">
                                 {p.tag ?? "Gift"}
                               </p>
                             </div>
-                            <div className="text-right">
-                              <div className="text-sm font-bold text-gray-900">
+                            <div className="text-right shrink-0">
+                              <div className="text-sm font-bold text-gray-900 whitespace-nowrap">
                                 {formatCurrency(p.price)}
                               </div>
                               {p.oldPrice && (
-                                <div className="text-xs text-gray-400 line-through">
+                                <div className="text-xs text-gray-400 line-through whitespace-nowrap">
                                   {formatCurrency(p.oldPrice)}
                                 </div>
                               )}
                             </div>
                           </div>
 
-                          <div className="mt-3 flex items-center gap-2">
+                          <div className="mt-auto pt-3">
                             <button
                               type="button"
-                              className="px-3 py-1 text-xs font-semibold rounded-full bg-primary/90 text-tertiary hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-primary/40"
-                              style={{ backgroundColor: "var(--color-primary)", color: "var(--color-tertiary)" }}
+                              className="px-3 py-1.5 text-xs font-medium rounded-full border border-gray-200 text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
                               onClick={() =>
-                                console.log("Add to cart ->", p.id, "from", offer.id)
+                                console.log(
+                                  "View details ->",
+                                  p.id,
+                                  "from",
+                                  offer.id
+                                )
                               }
                             >
-                              Add to cart
-                            </button>
-
-                            <button
-                              type="button"
-                              className="px-3 py-1 text-xs font-medium rounded-full border border-gray-200 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20"
-                              onClick={() =>
-                                console.log("View details ->", p.id, "from", offer.id)
-                              }
-                            >
-                              View
+                              View Details
                             </button>
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
-
                   {/* CTA */}
                   <div className="mt-5 flex items-center justify-between gap-3">
                     <div className="text-sm text-gray-600">
-                      {offer.products.length} {offer.products.length === 1 ? "product" : "products"}
+                      {offer.products.length}{" "}
+                      {offer.products.length === 1 ? "product" : "products"}
                     </div>
                     <div className="flex items-center gap-3">
                       <button
@@ -376,7 +346,11 @@ export default function DealsOfferSection() {
                           )
                         }
                       >
-                        {hasEnded ? "Ended" : isUpcoming ? "Notify me" : "Shop Offer"}
+                        {hasEnded
+                          ? "Ended"
+                          : isUpcoming
+                          ? "Notify me"
+                          : "Shop Offer"}
                       </button>
 
                       <a
@@ -396,8 +370,6 @@ export default function DealsOfferSection() {
             );
           })}
         </div>
-
-       
       </div>
     </section>
   );
@@ -407,19 +379,25 @@ export default function DealsOfferSection() {
  * Small helper component to show short countdown until start (days/h:m:s).
  * Rendered inline to keep rendering fast.
  */
-function CountdownShortMillis({ target, now }: { target: number; now: number }) {
+function CountdownShortMillis({
+  target,
+  now,
+}: {
+  target: number;
+  now: number;
+}) {
   const remaining = Math.max(target - now, 0);
   const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const hours = Math.floor(
+    (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
   const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
   return (
     <span className="font-mono">
-      {String(days).padStart(2, "0")}:
-      {String(hours).padStart(2, "0")}:
-      {String(minutes).padStart(2, "0")}:
-      {String(seconds).padStart(2, "0")}
+      {String(days).padStart(2, "0")}:{String(hours).padStart(2, "0")}:
+      {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
     </span>
   );
 }
