@@ -235,11 +235,11 @@ export default function ContactPage() {
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-secondary focus:outline-none transition-all duration-300 focus:shadow-lg"
                   >
                     <option value="">Select a service</option>
-                    <option value="branding">Branding & Identity</option>
-                    <option value="graphic-design">Graphic Design</option>
-                    <option value="web-design">Web Design</option>
-                    <option value="video-production">Video Production</option>
-                    <option value="media-craft">Media & Craft</option>
+                    <option value="token-of-love">Token of Love</option>
+                    <option value="2d-3d-board">2d/3d Board</option>
+                    <option value="sinage">Sinage</option>
+                    <option value="promotional-presents">Promotional/Presents</option>
+                    <option value="crafting-carving">Crafting/Carving</option>
                     <option value="other">Other</option>
                   </select>
                 </div>

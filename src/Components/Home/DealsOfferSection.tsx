@@ -267,7 +267,7 @@ export default function DealsOfferSection() {
                         <img
                           src={p.image}
                           alt={p.name}
-                          className="w-20 h-20 rounded-md object-cover flex-shrink-0"
+                          className="w-20 h-20 rounded-md object-cover shrink-0"
                         />
                         <div className="flex-1 min-w-0 flex flex-col">
                           <div className="flex items-start justify-between gap-2">
@@ -279,7 +279,7 @@ export default function DealsOfferSection() {
                                 {p.tag ?? "Gift"}
                               </p>
                             </div>
-                            <div className="text-right flex-shrink-0">
+                            <div className="text-right shrink-0">
                               <div className="text-sm font-bold text-gray-900 whitespace-nowrap">
                                 {formatCurrency(p.price)}
                               </div>
