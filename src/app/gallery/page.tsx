@@ -5,21 +5,21 @@ import { X, ChevronLeft, ChevronRight, Maximize2, Loader2 } from 'lucide-react';
 
 interface GalleryImage {
   id: number;
-  url: string;
+  image_url: string;
   title: string;
 }
 
-interface PaginationMeta {
+
+interface GalleryResponse {
+  results: GalleryImage[];
   currentPage: number;
   totalPages: number;
   totalItems: number;
   itemsPerPage: number;
 }
 
-interface GalleryResponse {
-  data: GalleryImage[];
-  meta: PaginationMeta;
-}
+
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
@@ -27,21 +27,22 @@ export default function GalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [pagination, setPagination] = useState<PaginationMeta>({
+  const [pagination, setPagination] = useState({
     currentPage: 1,
     totalPages: 1,
     totalItems: 0,
     itemsPerPage: 15
   });
 
+
   // Fetch images from API
-  const fetchImages = async (page: number = 1) => {
+   const fetchImages = async (page: number = 1) => {
     setLoading(true);
     setError(null);
 
     try {
       // Replace with your actual API endpoint
-      const response = await fetch(`/api/gallery?page=${page}&limit=${pagination.itemsPerPage}`);
+      const response = await fetch(`${baseUrl}api/v1/gallery/?page=${page}&limit=${pagination.itemsPerPage}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch images');
@@ -49,47 +50,52 @@ export default function GalleryPage() {
 
       const result: GalleryResponse = await response.json();
       
-      setImages(result.data);
-      setPagination(result.meta);
+      setImages(result.results);
+      setPagination({
+        currentPage: result.currentPage,
+        totalPages: result.totalPages,
+        totalItems: result.totalItems,
+        itemsPerPage: result.itemsPerPage
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       console.error('Error fetching images:', err);
       
       // Fallback to dummy data for demo purposes
-      loadDummyData(page);
+      // loadDummyData(page);
     } finally {
       setLoading(false);
     }
   };
 
   // Dummy data fallback (remove this in production)
-  const loadDummyData = (page: number) => {
-    const dummyImages: GalleryImage[] = [
-      { id: 1, url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop', title: 'Mountain Vista' },
-      { id: 2, url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop', title: 'Forest Lake' },
-      { id: 3, url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop', title: 'Beach Sunset' },
-      { id: 4, url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop', title: 'Woodland Path' },
-      { id: 5, url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=800&fit=crop', title: 'Northern Lights' },
-      { id: 6, url: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&h=800&fit=crop', title: 'Mountain Range' },
-      { id: 7, url: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1200&h=800&fit=crop', title: 'Tropical Paradise' },
-      { id: 8, url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200&h=800&fit=crop', title: 'Canyon View' },
-      { id: 9, url: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=800&fit=crop', title: 'Autumn Colors' },
-      { id: 10, url: 'https://images.unsplash.com/photo-1465056836041-7f43ac27dcb7?w=1200&h=800&fit=crop', title: 'Misty Mountains' },
-      { id: 11, url: 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1200&h=800&fit=crop', title: 'Coastal Cliffs' },
-      { id: 12, url: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1200&h=800&fit=crop', title: 'Desert Dunes' },
-      { id: 13, url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=800&fit=crop', title: 'Island Paradise' },
-      { id: 14, url: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&h=800&fit=crop', title: 'Cherry Blossoms' },
-      { id: 15, url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop', title: 'Alpine Meadow' }
-    ];
+  // const loadDummyData = (page: number) => {
+  //   const dummyImages: GalleryImage[] = [
+  //     { id: 1, url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop', title: 'Mountain Vista' },
+  //     { id: 2, url: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop', title: 'Forest Lake' },
+  //     { id: 3, url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop', title: 'Beach Sunset' },
+  //     { id: 4, url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop', title: 'Woodland Path' },
+  //     { id: 5, url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=800&fit=crop', title: 'Northern Lights' },
+  //     { id: 6, url: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&h=800&fit=crop', title: 'Mountain Range' },
+  //     { id: 7, url: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1200&h=800&fit=crop', title: 'Tropical Paradise' },
+  //     { id: 8, url: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1200&h=800&fit=crop', title: 'Canyon View' },
+  //     { id: 9, url: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1200&h=800&fit=crop', title: 'Autumn Colors' },
+  //     { id: 10, url: 'https://images.unsplash.com/photo-1465056836041-7f43ac27dcb7?w=1200&h=800&fit=crop', title: 'Misty Mountains' },
+  //     { id: 11, url: 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1200&h=800&fit=crop', title: 'Coastal Cliffs' },
+  //     { id: 12, url: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=1200&h=800&fit=crop', title: 'Desert Dunes' },
+  //     { id: 13, url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=800&fit=crop', title: 'Island Paradise' },
+  //     { id: 14, url: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1200&h=800&fit=crop', title: 'Cherry Blossoms' },
+  //     { id: 15, url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop', title: 'Alpine Meadow' }
+  //   ];
 
-    setImages(dummyImages);
-    setPagination({
-      currentPage: page,
-      totalPages: 3,
-      totalItems: 45,
-      itemsPerPage: 15
-    });
-  };
+  //   setImages(dummyImages);
+  //   setPagination({
+  //     currentPage: page,
+  //     totalPages: 3,
+  //     totalItems: 45,
+  //     itemsPerPage: 15
+  //   });
+  // };
 
   // Load initial data
   useEffect(() => {
@@ -153,6 +159,8 @@ export default function GalleryPage() {
 
     return pages;
   };
+
+  // console.log('Rendering GalleryPage with images:', images);
 
   return (
     <div className="min-h-screen bg-tertiary" onKeyDown={handleKeyDown} tabIndex={0}>
@@ -238,7 +246,7 @@ export default function GalleryPage() {
                     onClick={() => openImage(idx)}
                   >
                     <img 
-                      src={image.url} 
+                      src={image.image_url} 
                       alt={image.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
@@ -339,7 +347,7 @@ export default function GalleryPage() {
 
           <div className="max-w-6xl w-full" onClick={(e) => e.stopPropagation()}>
             <img 
-              src={selectedImage.url} 
+              src={selectedImage.image_url} 
               alt={selectedImage.title}
               className="w-full h-auto max-h-[85vh] object-contain rounded-2xl shadow-2xl"
             />
