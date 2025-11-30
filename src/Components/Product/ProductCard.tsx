@@ -17,11 +17,11 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
   if (viewMode === "list") {
     return (
       <div
-        className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:shadow-xl transition-all duration-300 hover:border-primary"
+        className="bg-white rounded-xl border-2 border-gray-200 p-4 sm:p-6 hover:shadow-xl transition-all duration-300 hover:border-primary"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="flex gap-6">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
           <div className="relative shrink-0">
             <img
               src={
@@ -30,7 +30,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
                   : product.image
               }
               alt={product.name}
-              className="w-48 h-48 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+              className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-lg transition-transform duration-300 hover:scale-105"
             />
             {discount > 0 && (
               <div className="absolute top-3 left-3 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold">
@@ -129,12 +129,12 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
   // Grid View
   return (
     <div
-      className="bg-white rounded-xl border-2 border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:border-gray-200  flex flex-col w-[300px]"
+      className="bg-white rounded-xl border-2 border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:border-gray-200 flex flex-col h-full w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
-      <div className="relative w-full h-[220px] bg-gray-100 overflow-hidden shrink-0">
+      <div className="relative w-full h-[200px] sm:h-[220px] bg-gray-100 overflow-hidden shrink-0">
         <img
           src={
             isHovered && product.hoverImage ? product.hoverImage : product.image
@@ -185,7 +185,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
       </div>
 
       {/* Product Info */}
-      <div className="p-3 flex flex-col flex-1 overflow-hidden">
+      <div className="p-3 sm:p-4 flex flex-col flex-1 overflow-hidden">
         {/* Rating */}
         {/* <div className="flex items-center gap-1 mb-1.5 shrink-0">
           {[...Array(5)].map((_, i) => (
@@ -214,7 +214,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
         </p>
 
         {/* Price & Category */}
-        <div className="flex items-center justify-between mb-2 bg-gray-50 p-2 rounded gap-1 shrink-0">
+        {/* <div className="flex items-center justify-between mb-2 bg-gray-50 p-2 rounded gap-1 shrink-0">
           <div className="flex items-center gap-1">
             <span className="text-base font-bold text-gray-900">
               ${product.price}
@@ -228,7 +228,10 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           <span className="text-xs text-gray-600 bg-white px-1.5 py-0.5 rounded font-medium whitespace-nowrap line-clamp-1">
             {product.subCategory}
           </span>
-        </div>
+        </div> */}
+        {/* <span className="text-xs text-gray-600 bg-white mb-1 px-1.5 py-0.5 rounded font-medium whitespace-nowrap line-clamp-1">
+          {product.subCategory}
+        </span> */}
 
         {/* Tags */}
         <div className="flex gap-1 flex-wrap mb-2 shrink-0">
