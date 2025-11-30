@@ -9,7 +9,6 @@ import Breadcrumbs from "./BreadCrumb";
 // Main Component
 export default function ProductPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [priceRange, setPriceRange] = useState<number[]>([0, 200]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>(
     []
@@ -18,7 +17,12 @@ export default function ProductPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
+
+  // responsive columns and dynamic pagination (2 rows)
+  const [columns, setColumns] = useState<number>(3);
+
+  // compute products per page = columns * 2 (two rows)
+  const productsPerPage = columns * 2;
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -49,11 +53,6 @@ export default function ProductPage() {
       );
     }
 
-    // Price filter
-    filtered = filtered.filter(
-      (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
-    );
-
     // Sort
     switch (sortBy) {
       case "price-low":
@@ -69,13 +68,7 @@ export default function ProductPage() {
           (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
         );
     }
-  }, [
-    selectedCategories,
-    selectedSubCategories,
-    searchQuery,
-    priceRange,
-    sortBy,
-  ]);
+  }, [selectedCategories, selectedSubCategories, searchQuery, sortBy]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -86,7 +79,6 @@ export default function ProductPage() {
   );
 
   const clearFilters = () => {
-    setPriceRange([0, 200]);
     setSearchQuery("");
     setSelectedCategories([]);
     setSelectedSubCategories([]);
@@ -95,13 +87,26 @@ export default function ProductPage() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [
-    selectedCategories,
-    selectedSubCategories,
-    searchQuery,
-    priceRange,
-    sortBy,
-  ]);
+  }, [selectedCategories, selectedSubCategories, searchQuery, sortBy]);
+
+  // Update columns based on window width to keep grid tight with card size
+  useEffect(() => {
+    function updateColumns() {
+      if (typeof window === "undefined") return;
+      const w = window.innerWidth;
+      // Tailwind breakpoints: sm=640, md=768, lg=1024, xl=1280, 2xl=1536
+      if (w >= 1536) setColumns(4);
+      else if (w >= 1280) setColumns(3);
+      else if (w >= 1024) setColumns(3);
+      else if (w >= 768) setColumns(2);
+      else if (w >= 640) setColumns(2);
+      else setColumns(1);
+    }
+
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white min-w-full flex flex-col">
@@ -127,8 +132,6 @@ export default function ProductPage() {
         <Filters
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
           selectedSubCategories={selectedSubCategories}
@@ -143,23 +146,23 @@ export default function ProductPage() {
         />
 
         {/* Main Content - Right Side */}
-        <main className="flex-1 px-3 sm:px-5 lg:px-6 py-6 overflow-y-auto">
+        <main className="flex-1 px-3 sm:px-4 lg:px-6 py-4 sm:py-6 overflow-y-auto">
           <div className="w-full">
             {/* Breadcrumb + Header Section */}
             {/* <Breadcrumbs
               items={[{ label: "Home", href: "/" }, { label: "Products" }]}
             /> */}
-            <div className="mb-6 ">
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+            <div className="mb-4 sm:mb-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
                 Transform Your Imagination to Reality
               </h1>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
                 Discover our custom products and services
               </p>
             </div>
 
             {/* Controls Bar with Search */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-6 bg-gray-50 p-3 rounded-lg">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 sm:gap-3 mb-4 sm:mb-6 bg-gray-50 p-3 sm:p-4 rounded-lg">
               <p className="text-gray-700 font-medium text-sm">
                 Showing{" "}
                 <span className="text-primary font-semibold">
@@ -241,11 +244,18 @@ export default function ProductPage() {
             {/* Products Grid/List */}
             {currentProducts.length > 0 ? (
               <div
-                className={`${
+                className={
                   viewMode === "list"
-                    ? "space-y-6"
-                    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 auto-rows-max xl:ml-12"
-                }`}
+                    ? "space-y-4 sm:space-y-6"
+                    : "grid gap-5 auto-rows-max"
+                }
+                style={
+                  viewMode === "list"
+                    ? undefined
+                    : {
+                        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                      }
+                }
               >
                 {currentProducts.map((product) => (
                   <ProductCard
