@@ -9,6 +9,14 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
+import { toast, Toaster } from "sonner";
+
+const baseUrl= process.env.NEXT_PUBLIC_API_URL;
+
+interface Response {
+  ok: boolean;
+  email?: string[];
+}
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,17 +27,35 @@ export default function Footer() {
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    if (email) {
-      setIsSubmitted(true);
-      setEmail("");
-      setTimeout(() => setIsSubmitted(false), 4500);
+    try {
+      const response = await fetch(`${baseUrl}api/v1/contact/newsletter/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data: Response = await response.json();
+      if (response.ok) {
+        setIsSubmitted(true);
+        toast.success("Subscription successful!");
+        setEmail("");
+      } else {
+        console.error("Subscription failed");
+        console.log(data);
+        toast.error(data?.email?.[0] || "Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
     <footer className="bg-primary text-white">
+      <Toaster />
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-3">
@@ -162,11 +188,7 @@ export default function Footer() {
                   )}
                 </button>
               </div>
-              {isSubmitted && (
-                <p className="mt-2 text-sm text-secondary">
-                  Thanks — check your inbox.
-                </p>
-              )}
+              
             </form>
           </div>
         </div>
