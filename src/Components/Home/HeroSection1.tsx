@@ -80,9 +80,9 @@ const HeroSection: React.FC = () => {
         <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"}`}>
           {/* Background Image */}
           <div className="absolute inset-0">
-            <Image src={slide.image} alt={slide.subtitle} fill priority={index === 0} className="object-cover" quality={90} />
+            <Image src={slide.image} alt={slide.subtitle} fill priority={index === 0} className="object-cover"/>
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-black/40 to-transparent" />
           </div>
 
           {/* Content */}

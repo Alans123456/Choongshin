@@ -14,6 +14,8 @@ import {
   Shield,
 } from "lucide-react";
 import SimilarProducts from "@/Components/Product/SimilarProducts";
+import ModelViewer from "@/Components/Product/ModelViewer";
+
 
 interface Product {
   name: string;
@@ -40,6 +42,12 @@ export default function HandicraftProductPage() {
   const [showZoom, setShowZoom] = useState<boolean>(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLDivElement>(null);
+  const [show3DModel, setShow3DModel] = useState<boolean>(false);
+
+
+  const handleToggle3DModel = () => {
+    setShow3DModel(!show3DModel);
+  };      
 
   const product: Product = {
     name: "Handcrafted Ceramic Vase",
@@ -69,7 +77,7 @@ export default function HandicraftProductPage() {
       "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&q=80",
       "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80",
       "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
-      "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80",
+      
     ],
     specifications: [
       { label: "Height", value: "12 inches" },
@@ -146,7 +154,7 @@ Please let me know the availability and delivery details.`;
   return (
     <div className="min-h-screen bg-linear-to-br from-amber-50 via-white to-purple-50">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      {/* <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Heritage Crafts</h1>
           <div className="flex gap-4">
@@ -156,12 +164,22 @@ Please let me know the availability and delivery details.`;
             </button>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Image Gallery Section */}
           <div className="space-y-4">
+
+            {show3DModel && (
+              <div className="w-full h-[500px] bg-white rounded-2xl overflow-hidden shadow-lg">
+                <ModelViewer />
+              </div>
+            )}
+
+            {!show3DModel && (
+              <>
+
             <div className="relative">
               {/* Main Image with Hover */}
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg">
@@ -228,13 +246,15 @@ Please let me know the availability and delivery details.`;
                 </div>
               )}
             </div>
+              </>
+            )}
 
             {/* Thumbnail Images */}
             <div className="grid grid-cols-4 gap-3">
               {product.images.map((img, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setSelectedImage(idx)}
+                  onClick={() => {setSelectedImage(idx); setShow3DModel(false);}}
                   className={`aspect-square rounded-xl overflow-hidden transition-all ${
                     selectedImage === idx
                       ? "ring-4 ring-[#633B6F] scale-105 shadow-lg"
@@ -248,6 +268,13 @@ Please let me know the availability and delivery details.`;
                   />
                 </button>
               ))}
+              {/* add preview 3d model option here */}
+              <button
+                onClick={handleToggle3DModel}
+                className="flex items-center justify-center aspect-square rounded-xl overflow-hidden transition-all hover:scale-105 bg-purple-100 text-purple-700 font-semibold shadow-lg"
+              >
+              {show3DModel ? "Hide 3D Model" : "View 3D Model"}
+              </button>
             </div>
             {/* Specifications */}
             <div className="hidden lg:block bg-white rounded-2xl p-6 shadow-lg">
