@@ -6,6 +6,11 @@ import Filters from "./Filters";
 import ProductCard from "./ProductCard";
 import Breadcrumbs from "./BreadCrumb";
 
+
+
+
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 // Main Component
 export default function ProductPage() {
   const [searchQuery, setSearchQuery] = useState("");

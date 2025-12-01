@@ -36,7 +36,6 @@ const AuthenticitySection: React.FC = () => {
               alt="Artisans and weavers showcasing traditional craftsmanship"
               fill
               className="object-cover object-center rounded-lg shadow-xl"
-              quality={90}
               priority
             />
           </div>
@@ -55,7 +54,7 @@ const AuthenticitySection: React.FC = () => {
                 const Icon = feature.icon;
                 return (
                   <div key={index} className="flex items-center gap-5">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-600 flex items-center justify-center flex-shrink-0 bg-white/50">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-600 flex items-center justify-center shrink-0 bg-white/50">
                       <Icon className="text-gray-800" size={26} strokeWidth={1.5} />
                     </div>
                     <div>

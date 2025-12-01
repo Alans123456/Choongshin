@@ -45,7 +45,6 @@ const CollaborationsSection: React.FC = () => {
                   alt={brand.name}
                   fill
                   className="object-contain"
-                  quality={90}
                 />
               </div>
             </div>

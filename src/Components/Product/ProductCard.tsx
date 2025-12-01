@@ -1,6 +1,7 @@
 import { Star, Heart, Share2 } from "lucide-react";
 import { useState } from "react";
 import { Product } from "./productData";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: Product;
@@ -105,9 +106,11 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
                   </span>
                 )}
               </div>
-              <button className="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:shadow-lg">
+              <Link href={`/products/${product.id}`}>
+              <button className="px-6 py-3 cursor-pointer bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:shadow-lg">
                 View Details
               </button>
+              </Link>
             </div>
 
             <div className="flex gap-2 flex-wrap">
@@ -246,9 +249,11 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
         </div>
 
         {/* Button */}
-        <button className="w-full py-2 bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all hover:shadow-lg text-xs mt-auto shrink-0">
+        <Link href={`/products/${product.id}`}>
+        <button className="w-full py-2 cursor-pointer bg-primary text-white rounded-lg font-semibold hover:bg-opacity-50 transition-all hover:shadow-lg text-xs mt-auto shrink-0 ">
           View Details
         </button>
+        </Link>
       </div>
     </div>
   );
