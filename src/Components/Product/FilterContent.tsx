@@ -4,8 +4,6 @@ import { categories } from "./categoriesData";
 interface FilterContentProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  priceRange: number[];
-  setPriceRange: (range: number[]) => void;
   selectedCategories: string[];
   setSelectedCategories: (categories: string[]) => void;
   selectedSubCategories: string[];
@@ -20,8 +18,6 @@ interface FilterContentProps {
 export default function FilterContent({
   searchQuery,
   setSearchQuery,
-  priceRange,
-  setPriceRange,
   selectedCategories,
   setSelectedCategories,
   selectedSubCategories,
@@ -116,33 +112,6 @@ export default function FilterContent({
             </div>
           </>
         )}
-      </div>
-
-      {/* Price Range */}
-      <div>
-        <h3 className="font-bold text-gray-900 mb-2 text-xs uppercase tracking-wider">
-          Price Range
-        </h3>
-        <div className="space-y-2">
-          <input
-            type="range"
-            min="0"
-            max="200"
-            value={priceRange[1]}
-            onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-            className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-primary"
-          />
-          <div className="flex justify-between items-center bg-gray-50 p-2 rounded-lg">
-            <div>
-              <p className="text-xs text-gray-600 uppercase tracking-widest font-semibold">
-                Price
-              </p>
-              <p className="text-base font-bold text-primary">
-                ${priceRange[0]} - ${priceRange[1]}
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Clear Filters */}

@@ -6,8 +6,6 @@ import { categories } from "./categoriesData";
 interface FiltersProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  priceRange: number[];
-  setPriceRange: (range: number[]) => void;
   selectedCategories: string[];
   setSelectedCategories: (categories: string[]) => void;
   selectedSubCategories: string[];
@@ -24,8 +22,6 @@ interface FiltersProps {
 export default function Filters({
   searchQuery,
   setSearchQuery,
-  priceRange,
-  setPriceRange,
   selectedCategories,
   setSelectedCategories,
   selectedSubCategories,
@@ -87,8 +83,6 @@ export default function Filters({
               <FilterContent
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
                 selectedCategories={selectedCategories}
                 setSelectedCategories={setSelectedCategories}
                 selectedSubCategories={selectedSubCategories}
@@ -119,8 +113,6 @@ export default function Filters({
             <FilterContent
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
               selectedCategories={selectedCategories}
               setSelectedCategories={setSelectedCategories}
               selectedSubCategories={selectedSubCategories}
