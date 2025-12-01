@@ -224,6 +224,9 @@ const Navbar: React.FC = () => {
 
             {/* Top Links */}
             <div className="flex items-center gap-4 text-sm">
+              <Link href="/products" className="text-white/80 hover:text-white transition-colors">
+                Products
+              </Link>
               <Link href="/about" className="text-white/80 hover:text-white transition-colors">
                 About
               </Link>
@@ -302,6 +305,9 @@ const Navbar: React.FC = () => {
 
             {/* Mobile Top Links */}
             <div className="border-t border-white/20 pt-3 mt-3 space-y-3">
+              <Link href="/product" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
+                Products
+              </Link>
               <Link href="/about" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 About
               </Link>
@@ -311,6 +317,7 @@ const Navbar: React.FC = () => {
               <Link href="/contact" className="block px-4 py-2 text-white/80 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </Link>
+
               
             </div>
           </div>
