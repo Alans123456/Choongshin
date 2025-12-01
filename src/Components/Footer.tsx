@@ -1,16 +1,18 @@
 "use client";
 import Link from "next/link";
 import {
-  Facebook,
+  
   Mail,
   Phone,
   Clock,
-  InstagramIcon,
+ 
   ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
 import { toast, Toaster } from "sonner";
-
+import { FiFacebook } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
+import { PiTiktokLogo } from "react-icons/pi";
 const baseUrl= process.env.NEXT_PUBLIC_API_URL;
 
 interface Response {
@@ -69,11 +71,15 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 mt-2">
               <a href="#" className="text-secondary hover:opacity-90">
-                <Facebook className="w-5 h-5" />
+                <FiFacebook className="w-5 h-5" />
               </a>
               <a href="#" className="text-secondary hover:opacity-90">
-                <InstagramIcon className="w-5 h-5" />
+                <FaInstagram className="w-5 h-5" />
               </a>
+              <a href="#" className="text-secondary hover:opacity-90">
+                <PiTiktokLogo className="w-5 h-5" />
+              </a>
+             
             </div>
           </div>
 
